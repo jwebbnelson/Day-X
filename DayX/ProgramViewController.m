@@ -8,9 +8,9 @@
 
 #import "ProgramViewController.h"
 
-static NSString *subjectKey = @"subjectKey";
-static NSString *entryKey = @"entryKey";
-static NSString *journalKey = @"journalKey";
+static NSString *subjectKey = @"subjectKey"; // Title
+static NSString *entryKey = @"entryKey";     // Text
+static NSString *journalKey = @"journalKey"; // Entry
 
 @interface ProgramViewController () <UITextFieldDelegate, UITextViewDelegate>
 
@@ -43,6 +43,10 @@ static NSString *journalKey = @"journalKey";
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearButton];
+    
+    
+    NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
+    [self updateWithDictionary:journal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,6 +72,25 @@ static NSString *journalKey = @"journalKey";
     
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
+
+// Update the view with dictionary
+-(void)updateWithDictionary:(NSDictionary *)dictionary{
+    self.textField.text = dictionary[subjectKey];
+    self.textView.text = dictionary[entryKey];
+}
+
+-(void)textViewDidBeginEditing:(UITextView *)textView{
+    self.textView.text = @"";
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [self save];
+}
+
+-(void)textViewDidChange:(UITextView *)textView {
+    [self save];
+}
+
 
 /*
 #pragma mark - Navigation
