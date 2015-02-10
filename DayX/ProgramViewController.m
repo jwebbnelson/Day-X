@@ -8,6 +8,10 @@
 
 #import "ProgramViewController.h"
 
+static NSString *subjectKey = @"subjectKey";
+static NSString *entryKey = @"entryKey";
+static NSString *journalKey = @"journalKey";
+
 @interface ProgramViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
@@ -51,9 +55,18 @@
 }
 
 -(void)buttonPressed{
-    
     self.textField.text = @"";
+}
+
+-(void)save {
+    NSMutableDictionary *journalDictionary = [NSMutableDictionary new];
     
+    journalDictionary[subjectKey]= self.textField.text;
+    journalDictionary[entryKey] = self.textView.text;
+    
+    [[NSUserDefaults standardUserDefaults]setObject:journalDictionary forKey:journalKey];
+    
+    [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
 /*
