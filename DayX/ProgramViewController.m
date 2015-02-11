@@ -23,28 +23,31 @@ static NSString *journalKey = @"journalKey"; // Entry
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+// Set Title/BackgroundColor
     self.title = @"DayX";
-    
     self.view.backgroundColor = [UIColor lightGrayColor];
-    
+
+#pragma Create TextField
     self.textField = [[UITextField alloc]initWithFrame:CGRectMake(20, 80, 200, 30)];
     self.textField.placeholder = @"Subject";
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:self.textField];
     self.textField.delegate = self;
-    
+  
+#pragma Create TextView
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(30, 130, self.view.frame.size.width - 60, self.view.frame.size.height - 200)];
     [self.view addSubview:self.textView];
     self.textView.delegate = self;
-    
+  
+#pragma Create ClearButton
     UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(230, 80, 50, 30)];
     clearButton.backgroundColor = [UIColor greenColor];
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearButton];
     
-    
+// Retrieve entry from NSUserDefaults
     NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
     [self updateWithDictionary:journal];
 }
@@ -53,53 +56,43 @@ static NSString *journalKey = @"journalKey"; // Entry
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// Keyboard Removal
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
 }
 
+// Clear Button Implementation
 -(void)buttonPressed{
     self.textField.text = @"";
 }
 
--(void)save {
+#pragma save Method
+-(void)save: (id)sender {
     NSMutableDictionary *journalDictionary = [NSMutableDictionary new];
-    
+
+// Set subject/entry keys to textfield/textview .texts
     journalDictionary[subjectKey]= self.textField.text;
     journalDictionary[entryKey] = self.textView.text;
     
+// Retrieve entry from NSUserDefaults
     [[NSUserDefaults standardUserDefaults]setObject:journalDictionary forKey:journalKey];
-    
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
 
-// Update the view with dictionary
+#pragma updateWithDictionary Method
 -(void)updateWithDictionary:(NSDictionary *)dictionary{
     self.textField.text = dictionary[subjectKey];
     self.textView.text = dictionary[entryKey];
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView{
-    self.textView.text = @"";
-}
-
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    [self save];
+    [self save:textField];
 }
 
 -(void)textViewDidChange:(UITextView *)textView {
-    [self save];
+    [self save:textView];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

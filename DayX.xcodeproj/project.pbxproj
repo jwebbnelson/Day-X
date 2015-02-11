@@ -19,8 +19,7 @@
 		711A508519388096005642EF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 711A506D19388095005642EF /* UIKit.framework */; };
 		711A508D19388096005642EF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 711A508B19388096005642EF /* InfoPlist.strings */; };
 		711A508F19388096005642EF /* DayXTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 711A508E19388096005642EF /* DayXTests.m */; };
-		8304F2651A8948AB00001382 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8304F2631A8948AB00001382 /* DetailViewController.m */; };
-		8304F2661A8948AB00001382 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8304F2641A8948AB00001382 /* DetailViewController.xib */; };
+		83648E3A1A8B124600C15F08 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 83648E391A8B124600C15F08 /* Entry.m */; };
 		83F274591A8956860050E5D8 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F274581A8956860050E5D8 /* ProgramViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -51,9 +50,8 @@
 		711A508A19388096005642EF /* DayXTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DayXTests-Info.plist"; sourceTree = "<group>"; };
 		711A508C19388096005642EF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		711A508E19388096005642EF /* DayXTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DayXTests.m; sourceTree = "<group>"; };
-		8304F2621A8948AB00001382 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		8304F2631A8948AB00001382 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		8304F2641A8948AB00001382 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		83648E381A8B124600C15F08 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		83648E391A8B124600C15F08 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		83F274571A8956860050E5D8 /* ProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramViewController.h; sourceTree = "<group>"; };
 		83F274581A8956860050E5D8 /* ProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,9 +117,8 @@
 				711A507919388095005642EF /* DXAppDelegate.m */,
 				83F274571A8956860050E5D8 /* ProgramViewController.h */,
 				83F274581A8956860050E5D8 /* ProgramViewController.m */,
-				8304F2621A8948AB00001382 /* DetailViewController.h */,
-				8304F2631A8948AB00001382 /* DetailViewController.m */,
-				8304F2641A8948AB00001382 /* DetailViewController.xib */,
+				83648E381A8B124600C15F08 /* Entry.h */,
+				83648E391A8B124600C15F08 /* Entry.m */,
 				711A507B19388095005642EF /* Images.xcassets */,
 				711A507019388095005642EF /* Supporting Files */,
 			);
@@ -234,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				711A507419388095005642EF /* InfoPlist.strings in Resources */,
-				8304F2661A8948AB00001382 /* DetailViewController.xib in Resources */,
 				711A507C19388095005642EF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,10 +250,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83648E3A1A8B124600C15F08 /* Entry.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
 				83F274591A8956860050E5D8 /* ProgramViewController.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
-				8304F2651A8948AB00001382 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
