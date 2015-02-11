@@ -9,6 +9,7 @@
 #import "ListViewController.h"
 #import "ListTableViewDataSource.h"
 #import "ProgramViewController.h"
+#import "EntryController.h"
 
 @interface ListViewController () <UITableViewDelegate>
 
@@ -20,10 +21,10 @@
 @implementation ListViewController
 
 // - SOLUTION BRANCH??
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self.tableView reloadData];
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,6 +48,8 @@
     [self.dataSource registerTableView:self.tableView];
 }
 
+
+
 #pragma add Method
 - (void)add {
     
@@ -60,6 +63,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    ProgramViewController *viewController = [ProgramViewController new];
+    [viewController updateWithEntry:[EntryController sharedInstance].entries[indexPath.row]];
+    [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

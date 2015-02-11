@@ -55,40 +55,41 @@ static NSString *const entryListKey = @"entryListKey";
 
 #pragma replaceEntry
 -(void)replaceEntry:(NSDictionary *)oldEntry withEntry:(NSDictionary *)newEntry{
-    if(!oldEntry){
+    if (!oldEntry || !newEntry) {
         return;
     }
     NSMutableArray *mutableArray = self.entries.mutableCopy;
-    NSInteger oldEntryIndex = [mutableArray indexOfObject:oldEntry];
-    [mutableArray replaceObjectAtIndex:oldEntryIndex withObject:newEntry];
-    
+    if([mutableArray containsObject:oldEntry]){
+       NSInteger oldEntryIndex = [mutableArray indexOfObject:oldEntry];
+       [mutableArray replaceObjectAtIndex:oldEntryIndex withObject:newEntry];
+    }
     self.entries = mutableArray;
-    [self synchronize];
+    
 }
 
 #pragma loadFromDefaults
 -(void)loadFromDefaults{
     NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entryListKey];
-    self.entries = entryDictionaries;
+    
+    NSMutableArray *entries = [NSMutableArray new];
+    for (NSDictionary *entry in entryDictionaries) {
+        [entries addObject:[[Entry alloc] initWithDictionary:entry]];
+    }
+    
+    self.entries = entries;
 }
 
 #pragma synchronize
 -(void)synchronize{
-    self.entries = [[NSUserDefaults standardUserDefaults]objectForKey:entryListKey];
+    NSMutableArray *entryDictionaries = [NSMutableArray new];
+    
+    for (Entry *entry in self.entries){
+        [entryDictionaries addObject:[entry entryDictionary]];
+    }
+
+    [[NSUserDefaults standardUserDefaults]setObject:entryDictionaries forKey:entryListKey];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+
 }
-
-
-
-//#pragma loadEntriesFromDefaults
-//    + (NSMutableArray *)loadEntriesFromDefaults {
-//        NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entryListKey];
-//        NSMutableArray *entries = [NSMutableArray new];
-//        for (NSDictionary *entryDictionary in entryDictionaries) {
-//            Entry *entry = [[Entry alloc] initWithDictionary:entryDictionary];
-//            [entries addObject:entry];
-//        }
-//        return entries;
-//    }
-
 
 @end

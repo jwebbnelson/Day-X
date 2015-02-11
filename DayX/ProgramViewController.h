@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+// Import Entry class
+@class Entry;
 
 @interface ProgramViewController : UIViewController
+
+@property (nonatomic, strong) NSDictionary *dictionary;
+
+-(void)updateWithDictionary:(NSDictionary *)dictionary;
+-(void)updateWithEntry:(Entry*)entry;
 
 @end

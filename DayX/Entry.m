@@ -40,25 +40,5 @@ static NSString * const entriesKey = @"entries";
     return entryDictionary;
 }
 
-#pragma loadEntriesFromDefaults
-+ (NSMutableArray *)loadEntriesFromDefaults {
-    NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entriesKey];
-    NSMutableArray *entries = [NSMutableArray new];
-    for (NSDictionary *entryDictionary in entryDictionaries) {
-        Entry *entry = [[Entry alloc] initWithDictionary:entryDictionary];
-        [entries addObject:entry];
-    }
-    return entries;
-}
-
-#pragma storeEntriesInDefaults
-+ (void)storeEntriesInDefaults:(NSArray *)entries {
-    NSMutableArray *entryDictionaries = [NSMutableArray new];
-    for (Entry *entry in entries) {
-        [entryDictionaries addObject:[entry entryDictionary]];
-    }
-    [[NSUserDefaults standardUserDefaults] setObject:entryDictionaries forKey:entriesKey];
-}
-
 
 @end

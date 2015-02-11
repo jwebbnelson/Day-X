@@ -19,4 +19,6 @@
 -(void)removeEntry:(Entry*)entry;
 -(void)replaceEntry:(NSDictionary *)oldEntry withEntry:(NSDictionary *)newEntry;
 
+-(void)loadFromDefaults;
+
 @end
