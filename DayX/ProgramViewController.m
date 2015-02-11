@@ -7,6 +7,7 @@
 //
 
 #import "ProgramViewController.h"
+#import "Entry.h"
 
 static NSString *subjectKey = @"subjectKey"; // Title
 static NSString *entryKey = @"entryKey";     // Text
@@ -16,6 +17,8 @@ static NSString *journalKey = @"journalKey"; // Entry
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UITextView *textView;
+
+@property (nonatomic, strong) Entry *entry;
 
 @end
 
@@ -46,6 +49,11 @@ static NSString *journalKey = @"journalKey"; // Entry
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearButton];
+   
+#pragma Create SaveButton
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    
     
 // Retrieve entry from NSUserDefaults
     NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
@@ -66,19 +74,20 @@ static NSString *journalKey = @"journalKey"; // Entry
 // Clear Button Implementation
 -(void)buttonPressed{
     self.textField.text = @"";
+    self.textView.text = @"";
 }
 
 #pragma save Method
--(void)save: (id)sender {
-    NSMutableDictionary *journalDictionary = [NSMutableDictionary new];
-
-// Set subject/entry keys to textfield/textview .texts
-    journalDictionary[subjectKey]= self.textField.text;
-    journalDictionary[entryKey] = self.textView.text;
-    
-// Retrieve entry from NSUserDefaults
-    [[NSUserDefaults standardUserDefaults]setObject:journalDictionary forKey:journalKey];
-    [[NSUserDefaults standardUserDefaults]synchronize];
+- (void)save:(id)sender {
+    if (!self.entry) {
+        self.entry = [[Entry alloc] init];
+        self.entry.title = self.textField.text;
+        self.entry.text = self.textView.text;
+    }
+    NSMutableArray *entries = [Entry loadEntriesFromDefaults];
+    [entries addObject:self.entry];
+    [Entry storeEntriesInDefaults:entries];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma updateWithDictionary Method
