@@ -13,6 +13,7 @@ static NSString * const entriesKey = @"entries";
 @implementation Entry
 
 #pragma initWithDictionary
+// Dictionaries to objects
 -(id)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
@@ -28,6 +29,7 @@ static NSString * const entriesKey = @"entries";
     NSMutableDictionary *entryDictionary = [NSMutableDictionary new];
     if (self.title) {
         [entryDictionary setObject:self.title forKey:titleKey];
+        // entryDictionary[titleKey] = self.title;
     }
     if (self.text) {
         [entryDictionary setObject:self.text forKey:textKey];
@@ -38,7 +40,7 @@ static NSString * const entriesKey = @"entries";
     return entryDictionary;
 }
 
-#pragma loadEntriesFromDefaults Method
+#pragma loadEntriesFromDefaults
 + (NSMutableArray *)loadEntriesFromDefaults {
     NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entriesKey];
     NSMutableArray *entries = [NSMutableArray new];

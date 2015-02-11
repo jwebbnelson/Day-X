@@ -44,8 +44,8 @@ static NSString *journalKey = @"journalKey"; // Entry
     self.textView.delegate = self;
   
 #pragma Create ClearButton
-    UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(230, 80, 50, 30)];
-    clearButton.backgroundColor = [UIColor greenColor];
+    UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(230, 80, 60, 30)];
+    clearButton.backgroundColor = [UIColor blueColor];
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearButton];
@@ -54,10 +54,9 @@ static NSString *journalKey = @"journalKey"; // Entry
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
-    
 // Retrieve entry from NSUserDefaults
-    NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
-    [self updateWithDictionary:journal];
+//    NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
+//    [self updateWithDictionary:journal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,12 +95,12 @@ static NSString *journalKey = @"journalKey"; // Entry
     self.textView.text = dictionary[entryKey];
 }
 
--(void)textFieldDidEndEditing:(UITextField *)textField{
-    [self save:textField];
-}
-
--(void)textViewDidChange:(UITextView *)textView {
-    [self save:textView];
-}
+//-(void)textFieldDidEndEditing:(UITextField *)textField{
+//    [self save:textField];
+//}
+//
+//-(void)textViewDidChange:(UITextView *)textView {
+//    [self save:textView];
+//}
 
 @end

@@ -19,6 +19,7 @@
 
 @implementation ListViewController
 
+// - SOLUTION BRANCH??
 //- (void)viewWillAppear:(BOOL)animated {
 //    [super viewWillAppear:animated];
 //    [self.tableView reloadData];
@@ -26,9 +27,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set Title/BackgroundColor
+    self.title = @"DayX";
+    self.view.backgroundColor = [UIColor lightGrayColor];
  
 // Initialize UIBarButtonItem
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add)];
     self.navigationItem.rightBarButtonItem = addButton;
 
 // Initialize and add tableView to mainview
@@ -43,10 +48,11 @@
 }
 
 #pragma add Method
-- (void)add:(id)sender {
+- (void)add {
     
     ProgramViewController *detailViewController = [ProgramViewController new];
     [self.navigationController pushViewController:detailViewController animated:YES];
+    
 }
 
 #pragma didSelectRowAtIndextPath

@@ -23,6 +23,7 @@
 		83648E3D1A8B211500C15F08 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83648E3C1A8B211500C15F08 /* ListViewController.m */; };
 		83648E401A8B21A200C15F08 /* ListTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83648E3F1A8B21A200C15F08 /* ListTableViewDataSource.m */; };
 		83F274591A8956860050E5D8 /* ProgramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F274581A8956860050E5D8 /* ProgramViewController.m */; };
+		83F513B11A8BFC1F002D659B /* EntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F513B01A8BFC1F002D659B /* EntryController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		83648E3F1A8B21A200C15F08 /* ListTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListTableViewDataSource.m; sourceTree = "<group>"; };
 		83F274571A8956860050E5D8 /* ProgramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgramViewController.h; sourceTree = "<group>"; };
 		83F274581A8956860050E5D8 /* ProgramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgramViewController.m; sourceTree = "<group>"; };
+		83F513AF1A8BFC1F002D659B /* EntryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryController.h; sourceTree = "<group>"; };
+		83F513B01A8BFC1F002D659B /* EntryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +132,8 @@
 				83648E3C1A8B211500C15F08 /* ListViewController.m */,
 				83648E3E1A8B21A200C15F08 /* ListTableViewDataSource.h */,
 				83648E3F1A8B21A200C15F08 /* ListTableViewDataSource.m */,
+				83F513AF1A8BFC1F002D659B /* EntryController.h */,
+				83F513B01A8BFC1F002D659B /* EntryController.m */,
 				711A507B19388095005642EF /* Images.xcassets */,
 				711A507019388095005642EF /* Supporting Files */,
 			);
@@ -264,6 +269,7 @@
 				83648E3D1A8B211500C15F08 /* ListViewController.m in Sources */,
 				83648E3A1A8B124600C15F08 /* Entry.m in Sources */,
 				711A507A19388095005642EF /* DXAppDelegate.m in Sources */,
+				83F513B11A8BFC1F002D659B /* EntryController.m in Sources */,
 				83F274591A8956860050E5D8 /* ProgramViewController.m in Sources */,
 				711A507619388095005642EF /* main.m in Sources */,
 			);
