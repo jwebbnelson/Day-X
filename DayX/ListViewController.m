@@ -19,6 +19,11 @@
 
 @implementation ListViewController
 
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self.tableView reloadData];
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
  
@@ -44,6 +49,12 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+#pragma didSelectRowAtIndextPath
+// Immediately deselects cell
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
