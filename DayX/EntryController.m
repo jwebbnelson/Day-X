@@ -8,6 +8,8 @@
 
 #import "EntryController.h"
 
+static NSString *const entryListKey = @"entryListKey";
+
 @interface EntryController()
 
 // Allows assignment of entries property
@@ -17,15 +19,16 @@
 
 @implementation EntryController
 
-//+ (EntryController *)sharedInstance {
-//    static EntryController *sharedInstance = nil;
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        sharedInstance = [[EntryController alloc] init];
-//        [sharedInstance loadFromDefaults];
-//    });
-//    return sharedInstance;
-//}
++ (EntryController *)sharedInstance {
+    static EntryController *sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[EntryController alloc] init];
+        [sharedInstance loadFromDefaults];
+    });
+    return sharedInstance;
+}
+
 #pragma addEntry
 -(void)addEntry:(Entry*)entry{
     if(!entry){
@@ -35,6 +38,7 @@
     [mutableArray addObject:entry];
     
     self.entries = mutableArray;
+    [self synchronize];
 }
 
 #pragma removeEntry
@@ -46,8 +50,10 @@
     [mutableArray removeObject:entry];
     
     self.entries = mutableArray;
+    [self synchronize];
 }
 
+#pragma replaceEntry
 -(void)replaceEntry:(NSDictionary *)oldEntry withEntry:(NSDictionary *)newEntry{
     if(!oldEntry){
         return;
@@ -57,5 +63,32 @@
     [mutableArray replaceObjectAtIndex:oldEntryIndex withObject:newEntry];
     
     self.entries = mutableArray;
+    [self synchronize];
 }
+
+#pragma loadFromDefaults
+-(void)loadFromDefaults{
+    NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entryListKey];
+    self.entries = entryDictionaries;
+}
+
+#pragma synchronize
+-(void)synchronize{
+    self.entries = [[NSUserDefaults standardUserDefaults]objectForKey:entryListKey];
+}
+
+
+
+//#pragma loadEntriesFromDefaults
+//    + (NSMutableArray *)loadEntriesFromDefaults {
+//        NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:entryListKey];
+//        NSMutableArray *entries = [NSMutableArray new];
+//        for (NSDictionary *entryDictionary in entryDictionaries) {
+//            Entry *entry = [[Entry alloc] initWithDictionary:entryDictionary];
+//            [entries addObject:entry];
+//        }
+//        return entries;
+//    }
+
+
 @end
