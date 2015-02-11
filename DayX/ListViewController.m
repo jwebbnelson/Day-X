@@ -7,8 +7,13 @@
 //
 
 #import "ListViewController.h"
+#import "ListTableViewDataSource.h"
+#import "ProgramViewController.h"
 
-@interface ListViewController ()
+@interface ListViewController () <UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ListTableViewDataSource *dataSource;
 
 @end
 
@@ -16,22 +21,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+ 
+// Initialize UIBarButtonItem
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    self.navigationItem.rightBarButtonItem = addButton;
+
+// Initialize and add tableView to mainview
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.view addSubview:self.tableView];
+ 
+// Datasource/Delegate
+    self.dataSource = [ListTableViewDataSource new];
+    self.tableView.dataSource = self.dataSource;
+    self.tableView.delegate = self;
+    [self.dataSource registerTableView:self.tableView];
 }
+
+#pragma add Method
+- (void)add:(id)sender {
+    
+    ProgramViewController *detailViewController = [ProgramViewController new];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
