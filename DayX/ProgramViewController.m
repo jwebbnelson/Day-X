@@ -56,10 +56,6 @@ static NSString *journalKey = @"journalKey"; // Entry
     
     self.textField.text = self.entry.title;
     self.textView.text = self.entry.text;
-    
-// Retrieve entry from NSUserDefaults
-//    NSDictionary *journal = [[NSUserDefaults standardUserDefaults]objectForKey:journalKey];
-//    [self updateWithDictionary:journal];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 #import "ListTableViewDataSource.h"
 #import "EntryController.h"
 
-@implementation ListTableViewDataSource : NSObject
+@implementation ListTableViewDataSource
 
 #pragma registerTableView Method
 - (void)registerTableView:(UITableView *)tableView {
