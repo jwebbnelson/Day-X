@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 DevMountain. All rights reserved.
 //
 
-#import "ProgramViewController.h"
+#import "DetailViewController.h"
 #import "EntryController.h"
 
 static NSString *subjectKey = @"subjectKey"; // Title
 static NSString *entryKey = @"entryKey";     // Text
 static NSString *journalKey = @"journalKey"; // Entry
 
-@interface ProgramViewController () <UITextFieldDelegate, UITextViewDelegate>
+@interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UITextView *textView;
@@ -22,7 +22,7 @@ static NSString *journalKey = @"journalKey"; // Entry
 
 @end
 
-@implementation ProgramViewController
+@implementation DetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -10,9 +10,11 @@
 // Import Entry class
 @class Entry;
 
-@interface ProgramViewController : UIViewController
+@interface DetailViewController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *dictionary;
+
+@property (nonatomic, assign) NSInteger index;
 
 -(void)updateWithDictionary:(NSDictionary *)dictionary;
 -(void)updateWithEntry:(Entry*)entry;
