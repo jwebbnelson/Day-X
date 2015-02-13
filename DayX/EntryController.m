@@ -29,7 +29,7 @@ static NSString *const entryListKey = @"entryListKey";
     return sharedInstance;
 }
 
-#pragma addEntry
+#pragma mark - addEntry
 -(void)addEntry:(Entry*)entry{
     if(!entry){
         return;

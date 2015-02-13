@@ -8,8 +8,9 @@
 
 #import "ListViewController.h"
 #import "ListTableViewDataSource.h"
-#import "ProgramViewController.h"
+#import "DXDetailViewController.h"
 #import "EntryController.h"
+#import "DetailContainerViewController.h"
 
 @interface ListViewController () <UITableViewDelegate>
 
@@ -48,24 +49,22 @@
     [self.dataSource registerTableView:self.tableView];
 }
 
-
-
 #pragma add Method
 - (void)add {
     
-    ProgramViewController *detailViewController = [ProgramViewController new];
+    DXDetailViewController *detailViewController = [DXDetailViewController new];
     [self.navigationController pushViewController:detailViewController animated:YES];
     
 }
 
-#pragma didSelectRowAtIndextPath
+#pragma mark - didSelectRowAtIndexPath
 // Immediately deselects cell
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    ProgramViewController *viewController = [ProgramViewController new];
-    [viewController updateWithEntry:[EntryController sharedInstance].entries[indexPath.row]];
+    DetailContainerViewController *viewController = [DetailContainerViewController new];
+    viewController.initialIndex = indexPath.row;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

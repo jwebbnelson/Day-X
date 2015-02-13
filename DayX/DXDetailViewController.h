@@ -1,8 +1,8 @@
 //
-//  ProgramViewController.h
+//  DXDetailViewController.h
 //  DayX
 //
-//  Created by Jordan Nelson on 2/9/15.
+//  Created by Jordan Nelson on 2/12/15.
 //  Copyright (c) 2015 DevMountain. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 // Import Entry class
 @class Entry;
 
-@interface DetailViewController : UIViewController
+@interface DXDetailViewController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *dictionary;
 
@@ -18,5 +18,6 @@
 
 -(void)updateWithDictionary:(NSDictionary *)dictionary;
 -(void)updateWithEntry:(Entry*)entry;
+
 
 @end

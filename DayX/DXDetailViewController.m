@@ -1,19 +1,19 @@
 //
-//  ProgramViewController.m
+//  DXDetailViewController.m
 //  DayX
 //
-//  Created by Jordan Nelson on 2/9/15.
+//  Created by Jordan Nelson on 2/12/15.
 //  Copyright (c) 2015 DevMountain. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "DXDetailViewController.h"
 #import "EntryController.h"
 
 static NSString *subjectKey = @"subjectKey"; // Title
 static NSString *entryKey = @"entryKey";     // Text
 static NSString *journalKey = @"journalKey"; // Entry
 
-@interface DetailViewController () <UITextFieldDelegate, UITextViewDelegate>
+@interface DXDetailViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UITextView *textView;
@@ -22,35 +22,35 @@ static NSString *journalKey = @"journalKey"; // Entry
 
 @end
 
-@implementation DetailViewController
+@implementation DXDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-// Set Title/BackgroundColor
+    
+    // Set Title/BackgroundColor
     self.title = @"DayX";
     self.view.backgroundColor = [UIColor lightGrayColor];
-
-#pragma Create TextField
+    
+    // Create TextField
     self.textField = [[UITextField alloc]initWithFrame:CGRectMake(20, 80, 200, 30)];
     self.textField.placeholder = @"Subject";
     self.textField.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:self.textField];
     self.textField.delegate = self;
-  
-#pragma Create TextView
+    
+    // Create TextView
     self.textView = [[UITextView alloc]initWithFrame:CGRectMake(30, 130, self.view.frame.size.width - 60, self.view.frame.size.height - 200)];
     [self.view addSubview:self.textView];
     self.textView.delegate = self;
-  
-#pragma Create ClearButton
+    
+    // Create ClearButton
     UIButton *clearButton = [[UIButton alloc]initWithFrame:CGRectMake(230, 80, 60, 30)];
     clearButton.backgroundColor = [UIColor blueColor];
     [clearButton setTitle:@"Clear" forState:UIControlStateNormal];
     [clearButton addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:clearButton];
-   
-#pragma Create SaveButton
+    
+    // Create SaveButton
     UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
     self.navigationItem.rightBarButtonItem = saveButton;
     
@@ -84,7 +84,7 @@ static NSString *journalKey = @"journalKey"; // Entry
     } else {
         [[EntryController sharedInstance] addEntry:entry];
     }
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -97,8 +97,8 @@ static NSString *journalKey = @"journalKey"; // Entry
 -(void)updateWithEntry:(Entry*)entry{
     self.entry = entry;
     self.textField.text = entry.title;
-    self.textView.text = entry.text;
-    
+    self.textView.text = entry.text;    
 }
+
 
 @end

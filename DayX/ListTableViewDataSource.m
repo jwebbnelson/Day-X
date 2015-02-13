@@ -30,4 +30,14 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        [[EntryController sharedInstance] removeEntry:[[EntryController sharedInstance].entries objectAtIndex:indexPath.row]];
+        // Animation Selection
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    
+}
+
+
 @end

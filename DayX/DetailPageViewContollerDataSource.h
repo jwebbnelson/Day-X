@@ -11,4 +11,6 @@
 
 @interface DetailPageViewContollerDataSource : NSObject <UIPageViewControllerDataSource>
 
+-(UIViewController *)viewControllerAtIndex:(NSInteger)index;
+
 @end

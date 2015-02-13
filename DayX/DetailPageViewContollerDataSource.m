@@ -8,29 +8,33 @@
 
 #import "DetailPageViewContollerDataSource.h"
 #import "EntryController.h"
-#import "DetailViewController.h"
+#import "DXDetailViewController.h"
 
 @implementation DetailPageViewContollerDataSource
 
+#pragma - mark viewControllerAtIndex
 -(UIViewController *)viewControllerAtIndex:(NSInteger)index{
     
-    if (index < 0 || index > [[EntryController sharedInstance].entries count]){
+    if (index < 0 || index >= [[EntryController sharedInstance].entries count]){
         return  nil;
     }
-    DetailViewController *viewController = [DetailViewController new];
+    DXDetailViewController *viewController = [DXDetailViewController new];
     viewController.index = index;
+    [viewController updateWithEntry:[EntryController sharedInstance].entries[index]];
+    
     return viewController;
 }
 
-
--(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(DetailViewController *)viewController{
+#pragma - mark viewControllerBeforeController
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(DXDetailViewController *)viewController{
     
     NSInteger beforeIndex = viewController.index - 1;
     
     return [self viewControllerAtIndex:beforeIndex];
 }
 
--(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(DetailViewController *)viewController{
+#pragma - mark viewControllerAfterViewController
+-(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(DXDetailViewController *)viewController{
     
     NSInteger afterIndex = viewController.index + 1;
     

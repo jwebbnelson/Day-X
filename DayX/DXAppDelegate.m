@@ -7,7 +7,7 @@
 //
 
 #import "DXAppDelegate.h"
-#import "ProgramViewController.h"
+#import "DXDetailViewController.h"
 #import "ListViewController.h"
 
 @implementation DXAppDelegate
